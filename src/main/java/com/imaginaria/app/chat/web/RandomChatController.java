@@ -3,7 +3,12 @@ package com.imaginaria.app.chat.web;
 import com.imaginaria.app.chat.service.RandomChatService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -12,14 +17,14 @@ import java.util.Map;
 @RequestMapping("/api/random-chat")
 public class RandomChatController
 {
-
     private final RandomChatService randomChatService;
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody Map<String, Object> body)
     {
         String name = String.valueOf(body.getOrDefault("displayName", "Anonymous"));
-        var res = randomChatService.join(name);
+        String avatarSrc = String.valueOf(body.getOrDefault("avatarSrc", ""));
+        var res = randomChatService.join(name, avatarSrc);
         return ResponseEntity.ok(res);
     }
 
@@ -30,7 +35,8 @@ public class RandomChatController
                 .<ResponseEntity<?>>map(m -> ResponseEntity.ok(Map.of(
                         "status", "matched",
                         "chatId", m.chatId(),
-                        "partnerName", m.partnerName()
+                        "partnerName", m.partnerName(),
+                        "partnerAvatarSrc", m.partnerAvatarSrc()
                 )))
                 .orElseGet(() -> ResponseEntity.ok(Map.of("status", "waiting")));
     }

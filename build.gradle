@@ -1,6 +1,6 @@
 buildscript {
 	dependencies {
-		classpath 'org.postgresql:postgresql:42.7.4'
+		classpath 'org.postgresql:postgresql:42.7.7'
 	}
 }
 
@@ -11,8 +11,8 @@ plugins {
 	id "org.flywaydb.flyway" version "10.0.0"
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+group = 'com.imaginaria'
+version = '0.0.1'
 
 java {
 	toolchain {
@@ -31,7 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.flywaydb:flyway-core'
-	runtimeOnly 'org.postgresql:postgresql:42.7.4'
+	runtimeOnly 'org.postgresql:postgresql:42.7.7'
 	implementation "org.flywaydb:flyway-database-postgresql"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'

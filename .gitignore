@@ -1,5 +1,4 @@
 HELP.md
-db_config.env
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

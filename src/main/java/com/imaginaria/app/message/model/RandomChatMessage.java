@@ -19,4 +19,5 @@ public class RandomChatMessage
     String senderUserName;
     String content;
     OffsetDateTime sentAt;
+    String senderAvatarSrc;
 }
